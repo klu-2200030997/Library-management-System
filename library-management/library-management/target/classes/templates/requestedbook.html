@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::div})">
+<head>
+<title>My Requested Books</title>
+</head>
+<body>
+
+	<div class="container my-5">
+		<h1 class="text-center mb-4">Your Requested Books</h1>
+
+		<!-- Display requested books if available -->
+		<div class="row">
+			<div th:if="${requests != null and !#lists.isEmpty(requests)}">
+				<div class="col-md-12">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Book Name</th>
+								<th>ISBN</th>
+								<th>Author</th>
+								<th>Publisher</th>
+								<th>Price</th>
+								<th>Request Date</th>
+								<th>Return Date</th>
+								<th>Status</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="request : ${requests}">
+								<td th:text="${request.book.name}">Book Name</td>
+								<td th:text="${request.book.isbn}">1234567890</td>
+								<td th:text="${request.book.author}">Author Name</td>
+								<td th:text="${request.book.publisher}">Publisher Name</td>
+								<td th:text="${request.book.price}">$0.00</td>
+								<td th:text="${request.requestDate}">2024-01-01</td>
+								<td th:text="${request.returnDate}">2024-01-15</td>
+								<td th:text="${request.status}">Pending</td>
+								<td>
+									<!-- Show "Return the Book" button if the status is "Approved" -->
+									<div th:if="${request.status == 'Approved'}">
+										<a th:href="@{/returnBook(requestId=${request.id})}"
+											class="btn btn-warning btn-sm">Return the Book</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- No requests found message -->
+			<div th:if="${requests == null or #lists.isEmpty(requests)}"
+				class="alert alert-info" role="alert">No requested books
+				found.</div>
+		</div>
+	</div>
+
+</body>
+</html>

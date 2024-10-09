@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::div})">
+<head>
+<title>View Students</title>
+</head>
+<body>
+
+	<div class="container my-5">
+		<h3 class="text-center mb-4">Students List</h3>
+
+		<!-- Display users if available -->
+		<div class="row">
+			<div class="col-md-12">
+				<div th:if="${users != null and !#lists.isEmpty(users)}">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Email</th>
+								<th>Contact</th>
+								<th>Student Id</th>
+								<th>Actions</th>
+								<!-- New column for actions -->
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="user : ${users}">
+								<td th:text="${user.id}">1</td>
+								<td th:text="${user.firstname}">John</td>
+								<td th:text="${user.lastname}">Doe</td>
+								<td th:text="${user.emailid}">john.doe@example.com</td>
+								<td th:text="${user.mobileno}">123-456-7890</td>
+								<td th:text="${user.userId}">john</td>
+								<td>
+									<!-- New View Details button --> <a
+									th:href="@{/viewStudentDetails(id=${user.id})}"
+									class="btn btn-primary"> View Details </a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- No users found message -->
+				<div th:if="${users == null or #lists.isEmpty(users)}"
+					class="alert alert-info" role="alert">No users found.</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

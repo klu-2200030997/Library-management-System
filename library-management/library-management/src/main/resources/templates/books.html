@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::div})">
+<head>
+<title>Books</title>
+</head>
+<body>
+
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Available Books</h1>
+
+        <!-- Search Form -->
+        <form action="#" th:action="@{/searchBooks}" method="get">
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <input type="text" name="search" class="form-control" placeholder="Search by book name" th:value="${searchTerm}" />
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Display books if available -->
+        <div class="row">
+            <div th:if="${books != null and !#lists.isEmpty(books)}">
+                <div class="row">
+                    <!-- Loop through books and display them in cards -->
+                    <div class="col-md-3 mb-4" th:each="book : ${books}">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${book.name}">Book Name</h5>
+                                <p class="card-text">
+                                    <strong>ISBN:</strong> <span th:text="${book.isbn}">1234567890</span><br>
+                                    <strong>Author:</strong> <span th:text="${book.author}">Author Name</span><br>
+                                    <strong>Publisher:</strong> <span th:text="${book.publisher}">Publisher Name</span><br>
+                                    <strong>Price:</strong> <span th:text="${book.price}">$0.00</span><br>
+                                    <strong>Quantity:</strong> <span th:text="${book.quantity}">0</span><br>
+                                </p>
+
+                                <!-- Display Request Book button if user is logged in -->
+                                <div th:if="${session.userlogin == 'user'}" class="text-center">
+                                    <a th:href="@{/requestBook/{bookId}(bookId=${book.id})}"
+                                        class="btn btn-primary">Request Book</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No books found message -->
+            <div th:if="${books == null or #lists.isEmpty(books)}"
+                class="alert alert-info" role="alert">No books available.</div>
+        </div>
+    </div>
+</body>
+</html>

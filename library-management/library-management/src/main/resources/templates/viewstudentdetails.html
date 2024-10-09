@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::div})">
+<head>
+<title>Student Details</title>
+</head>
+<body>
+
+	<div class="container my-5">
+		<h3 class="text-center mb-4">Student Details</h3>
+
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<div class="card">
+					<div class="card-header">
+						<h4 th:text="${student.firstname} + ' ' + ${student.lastname}">John
+							Doe</h4>
+					</div>
+					<div class="card-body">
+						<p>
+							<strong>ID:</strong> <span th:text="${student.id}">1</span>
+						</p>
+						<p>
+							<strong>First Name:</strong> <span th:text="${student.firstname}">John</span>
+						</p>
+						<p>
+							<strong>Last Name:</strong> <span th:text="${student.lastname}">Doe</span>
+						</p>
+						<p>
+							<strong>Email:</strong> <span th:text="${student.emailid}">john.doe@example.com</span>
+						</p>
+						<p>
+							<strong>Mobile No:</strong> <span th:text="${student.mobileno}">123-456-7890</span>
+						</p>
+						<p>
+							<strong>Student ID:</strong> <span th:text="${student.userId}">john123</span>
+						</p>
+						<p>
+							<strong>Address:</strong> <span th:text="${student.address}">123
+								Main St, City</span>
+						</p>
+					</div>
+
+					<!-- Delete Button -->
+					<div class="card-footer text-center">
+						<form th:action="@{/deleteStudent}" method="post">
+							<input type="hidden" th:name="id" th:value="${student.id}" />
+							<button type="submit" class="btn btn-danger">Delete
+								Student</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

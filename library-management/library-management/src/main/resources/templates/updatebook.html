@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::div})">
+<head>
+<title>Update Book</title>
+</head>
+
+<body>
+	<div class="container my-5">
+		<h2 class="text-center mb-4">Update Book</h2>
+
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<form th:action="@{/updatebook}" method="post">
+					<input type="hidden" th:name="id" th:value="${book.id}" />
+
+					<div class="mb-3">
+						<label for="name" class="form-label">Name</label> <input
+							type="text" class="form-control" id="name" name="name"
+							th:value="${book.name}" required />
+					</div>
+
+					<div class="mb-3">
+						<label for="isbn" class="form-label">ISBN</label> <input
+							type="text" class="form-control" id="isbn" name="isbn"
+							th:value="${book.isbn}" required />
+					</div>
+
+					<div class="mb-3">
+						<label for="author" class="form-label">Author</label> <input
+							type="text" class="form-control" id="author" name="author"
+							th:value="${book.author}" required />
+					</div>
+
+					<div class="mb-3">
+						<label for="publisher" class="form-label">Publisher</label> <input
+							type="text" class="form-control" id="publisher" name="publisher"
+							th:value="${book.publisher}" required />
+					</div>
+
+					<div class="mb-3">
+						<label for="edition" class="form-label">Edition</label> <input
+							type="text" class="form-control" id="edition" name="edition"
+							th:value="${book.edition}" required />
+					</div>
+
+					<div class="mb-3">
+						<label for="price" class="form-label">Price</label> <input
+							type="text" class="form-control" id="price" name="price"
+							th:value="${book.price}" required />
+					</div>
+
+					<div class="mb-3">
+						<label for="quantity" class="form-label">Quantity</label> <input
+							type="number" class="form-control" id="quantity" name="quantity"
+							th:value="${book.quantity}" required />
+					</div>
+
+					<div class="mb-3">
+						<label for="category" class="form-label">Category</label> <select
+							id="category" name="categoryId" class="form-select" required>
+							<option th:each="category : ${categories}"
+								th:value="${category.id}" th:text="${category.name}"
+								th:selected="${category.id == book.category.id}"></option>
+						</select>
+					</div>
+
+					<button type="submit" class="btn btn-primary">Update Book</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

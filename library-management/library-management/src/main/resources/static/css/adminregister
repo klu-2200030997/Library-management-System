@@ -1,0 +1,121 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Card Styles */
+.card {
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.form-control:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 8px rgba(106, 17, 203, 0.25);
+}
+
+/* Label Styling */
+label {
+    font-weight: 500;
+    color: #333;
+    font-size: 1rem;
+}
+
+/* Button Styles */
+button {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.5);
+}
+
+/* Centered text */
+h3.text-center {
+    color: #444;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Input helper text */
+.small.text-muted {
+    font-size: 0.85rem;
+}
+
+/* Custom Button Colors */
+.custom-bg {
+    background-color: #6a11cb;
+}
+
+.custom-bg:hover {
+    background-color: #4b0e98;
+}
+
+.text-color {
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .col-md-4 {
+        width: 100%;
+    }
+
+    .container-fluid {
+        padding: 20px;
+    }
+}

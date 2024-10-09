@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.thymeleaf.org" th:replace="base::layout(~{::div})">
+<head>
+<title>All Requested Books</title>
+</head>
+<body>
+
+	<div class="container my-5">
+		<h1 class="text-center mb-4">All Requested Books</h1>
+
+		<!-- Display requested books if available -->
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Book Name</th>
+					<th>ISBN</th>
+					<th>Author</th>
+					<th>Publisher</th>
+					<th>Price</th>
+					<th>Student Name</th>
+					<th>Request Date</th>
+					<th>Return Date</th>
+					<th>Status</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="request : ${requests}">
+					<td th:text="${request.id}">1</td>
+					<td th:text="${request.book.name}">Book Name</td>
+					<td th:text="${request.book.isbn}">1234567890</td>
+					<td th:text="${request.book.author}">Author Name</td>
+					<td th:text="${request.book.publisher}">Publisher Name</td>
+					<td th:text="${request.book.price}">$0.00</td>
+					<td th:text="${request.user.firstname}">2024-01-15</td>
+					<td th:text="${request.requestDate}">2024-01-01</td>
+					<td th:text="${request.returnDate}">2024-01-15</td>
+					<td th:text="${request.status}">Pending</td>
+					<td>
+						<!-- Conditionally display buttons based on status -->
+						<div th:if="${request.status == 'Pending'}">
+							<a th:href="@{/approveRequest(requestId=${request.id})}"
+								class="btn btn-success btn-sm">Approve</a> <a
+								th:href="@{/rejectRequest(requestId=${request.id})}"
+								class="btn btn-danger btn-sm">Reject</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- No requests found message -->
+		<div th:if="${requests == null or #lists.isEmpty(requests)}"
+			class="alert alert-info" role="alert">No requested books found.
+		</div>
+	</div>
+
+</body>
+</html>
